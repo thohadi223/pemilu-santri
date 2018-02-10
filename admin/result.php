@@ -5,24 +5,19 @@
 	
 	require_once('../config/connection.php');
 	$settings = include('../config/settings.php');
-	$query = "SELECT no_kandidat,nama,ifnull(perolehan_suara,0) perolehan_suara FROM kandidat A 
-	LEFT JOIN (SELECT kandidat,count(1) perolehan_suara FROM suara_pemilih GROUP BY kandidat) B ON A.no_kandidat = B.kandidat 
-    GROUP BY no_kandidat,nama order by no_kandidat asc";
+	$query = "SELECT foto,no_urut,no_induk,nama,ifnull(perolehan_suara,0) perolehan_suara FROM kandidat A 
+	LEFT JOIN (SELECT kandidat,count(1) perolehan_suara FROM suara_pemilih GROUP BY kandidat) B ON A.no_urut = B.kandidat GROUP BY foto,no_urut,no_induk,nama order by no_urut desc";
 	$result = $mysqli->query($query);
 	
-	$query_chart = "SELECT  no_kandidat,nama,IFNULL(perolehan_suara, 0) perolehan_suara FROM kandidat A
-        LEFT JOIN (SELECT kandidat, COUNT(1) perolehan_suara FROM suara_pemilih GROUP BY kandidat) B ON A.no_kandidat = B.kandidat 
-	GROUP BY no_kandidat , nama ORDER BY no_kandidat";
-	
+	$query_chart = "SELECT foto,no_urut,no_induk,nama,ifnull(perolehan_suara,0) perolehan_suara FROM kandidat A 
+	LEFT JOIN (SELECT kandidat,count(1) perolehan_suara FROM suara_pemilih GROUP BY kandidat) B ON A.no_urut = B.kandidat GROUP BY foto,no_urut,no_induk,nama order by no_urut";
 	$result_chart = $mysqli->query($query_chart);
 	
-	$query_by_suara = "SELECT no_kandidat, nama,ifnull(perolehan_suara,0) perolehan_suara FROM kandidat A 
-LEFT JOIN (SELECT kandidat,count(1) perolehan_suara FROM suara_pemilih GROUP BY kandidat) B ON A.no_kandidat= B.kandidat 
-GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
+	
+	
+	$query_by_suara = "SELECT foto,no_urut,no_induk,nama,ifnull(perolehan_suara,0) perolehan_suara FROM kandidat A 
+	LEFT JOIN (SELECT kandidat,count(1) perolehan_suara FROM suara_pemilih GROUP BY kandidat) B ON A.no_urut = B.kandidat GROUP BY foto,no_urut,no_induk,nama order by B.perolehan_suara desc,no_urut asc";
 	$result_by_suara = $mysqli->query($query_by_suara);
-	
-	
-	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,8 +69,7 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 		</nav>
 		<div class="text-center fix-header">
 		
-			<h2 style="font-size:22px;line-height:30px">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN
-			<br><?php echo $settings['tahun_pemilihan'] ?></h2>
+			<h2 style="font-size:22px;line-height:30px">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN<br>TAHUN 2015 M/ 1437 H</h2>
 		</div>
 	</div>
 	
@@ -94,25 +88,12 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 						?><li class="kandidat-holder" style="z-index:<?php echo $i; ?>;opacity:0">
 							<input type="hidden" class="perolehan-suara" value="<?php echo $kandidat['perolehan_suara']; ?>">
 							<div class="text-center bg-warning" style="padding-bottom:10px">
-								<h1><?php echo $kandidat['no_kandidat']; ?></h1>
+								<h1><?php echo $kandidat['no_urut']; ?></h1>
 								
 								<div class="center-block view view-first" style="width:75%">
-									<?php
-										$no_kandidat = $kandidat['no_kandidat'];
-										$query_detail = "SELECT no_urut,no_induk,nama,foto FROM kandidat_detail WHERE no_kandidat=$no_kandidat order by no_urut";
-										$result_detail = $mysqli->query($query_detail);
 										
-										while($kandidat_detail = $result_detail->fetch_array()){
-											$concated_values[]=$kandidat_detail['no_induk'].';'.$kandidat_detail['nama'];
-											$no_urut = $kandidat_detail['no_urut'];
+									<img src="../kandidat/<?php echo $kandidat['foto']; ?>" style="width:100%;" alt="<?php echo $kandidat['foto']; ?>">
 										
-									?>
-									<img src="../kandidat/<?php echo $kandidat_detail['foto']; ?>" style="width:45%;" alt="<?php echo $kandidat_detail['foto']; ?>">
-									<?php
-										}		
-									?>
-									
-									
 								</div>
 								<h2><?php echo $kandidat['nama']; ?></h2>
 							</div>
@@ -154,32 +135,42 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 		<div id="final-result" style="margin-top:30px;">
 			<div class="text-center fix-header" style="margin-bottom:20px;">
 		
-				<h2 style="font-size:22px;line-height:30px;padding:15px 0px;">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN
-				<br><?php echo $settings['tahun_pemilihan'] ?></h2>
+				<h2 style="font-size:22px;line-height:30px;padding:15px 0px;">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN<br>TAHUN 2015 M/ 1437 H</h2>
 			</div>
 			<div class="row">
 				<?php
 					$kandidat = $result_by_suara->fetch_array();
 						
 				?>
-				<div class="col-md-6 col-md-offset-3" style="padding-right:2px;padding-left:2px;">
+				<div class="col-md-3 col-md-offset-3" style="padding-right:2px;padding-left:2px;">
 					<div class="text-center bg-success" style="padding-bottom:10px">
-						<h3 class="bg-warning" style="margin-bottom:10px;padding:10px">Presiden &amp; Wakil Presiden</h3>
+						<h3 class="bg-warning" style="margin-bottom:10px;padding:10px">Presiden</h3>
 						<div class="center-block view view-first" style="width:75%">
-							<?php
-								$no_kandidat = $kandidat['no_kandidat'];
-								$query_detail = "SELECT no_urut,no_induk,nama,foto FROM kandidat_detail WHERE no_kandidat=$no_kandidat order by no_urut";
-								$result_detail = $mysqli->query($query_detail);
 								
-								while($kandidat_detail = $result_detail->fetch_array()){
-								
-							?>
-							<img src="../kandidat/<?php echo $kandidat_detail['foto']; ?>" style="width:45%;" alt="<?php echo $kandidat_detail['foto']; ?>">
-							<?php
-								}		
-							?>
-							
+							<img src="../kandidat/<?php echo $kandidat['foto']; ?>" style="width:100%;" alt="<?php echo $kandidat['foto']; ?>">
 							<div class="mask bg-danger">
+								<!--<h2>Hover Style #1</h2>-->
+								
+								<a href="javascript:void(0)" class="info">
+									<?php echo $kandidat['perolehan_suara'];?> SUARA
+								</a>
+							</div>
+						</div>
+						<h3><?php echo $kandidat['nama']; ?></h3>
+					</div>
+				</div>
+							<?php
+					$kandidat = $result_by_suara->fetch_array();
+						
+							?>
+				<div class="col-md-3" style="padding-right:2px;padding-left:2px;">
+					<div class="text-center bg-success" style="padding-bottom:10px">
+						
+						<h3 class="bg-warning" style="margin-bottom:10px;padding:10px 0px">Wakil Presiden</h3>
+						<div class="center-block view view-first" style="width:75%">
+							
+							<img src="../kandidat/<?php echo $kandidat['foto']; ?>" style="width:100%;" alt="<?php echo $kandidat['foto']; ?>">
+							<div class="mask">
 								<!--<h2>Hover Style #1</h2>-->
 								
 								<a href="javascript:void(0)" class="info">
@@ -194,11 +185,11 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 				
 			</div>
 			<div class="row">
-				
+				<div class="col-md-6" style="padding-right:2px;padding-left:2px;">
 					<?php
-					$i=1;
+					$i=3;
 					while($kandidat = $result_by_suara->fetch_array()){
-						$i++;
+						
 					?>
 					<div class="col-md-3" style="padding-right:2px;padding-left:2px;">
 						<div class="text-center" style="padding-bottom:10px">
@@ -206,18 +197,34 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 							
 							<div class="view view-first">
 								
-								<?php
-								$no_kandidat = $kandidat['no_kandidat'];
-								$query_detail = "SELECT no_urut,no_induk,nama,foto FROM kandidat_detail WHERE no_kandidat=$no_kandidat order by no_urut";
-								$result_detail = $mysqli->query($query_detail);
+								<img src="../kandidat/<?php echo $kandidat['foto']; ?>" style="width:100%;" alt="<?php echo $kandidat['foto']; ?>">
+								<div class="mask">
+									<!--<h2>Hover Style #1</h2>-->
+									
 								
-								while($kandidat_detail = $result_detail->fetch_array()){
+									<a href="javascript:void(0)" class="info">
+										<?php echo $kandidat['perolehan_suara'];?> SUARA
+									</a>
+								</div>
+							</div>
+							<p><?php echo $kandidat['nama']; ?></p>
+						</div>
+					</div>
+					<?php $i++; if($i==7)break;} ?>
+				</div>
 								
-							?>
-							<img src="../kandidat/<?php echo $kandidat_detail['foto']; ?>" style="width:45%;" alt="<?php echo $kandidat_detail['foto']; ?>">
+				<div class="col-md-6" style="padding-right:2px;padding-left:2px;">
 							<?php
-								}		
+					while($kandidat = $result_by_suara->fetch_array()){
+						
 							?>
+					<div class="col-md-3" style="padding-right:2px;padding-left:2px;">
+						<div class="text-center" style="padding-bottom:10px">
+							<p><strong><?php echo $i; ?></strong></p>
+							
+							<div class="view view-first">
+								
+								<img src="../kandidat/<?php echo $kandidat['foto']; ?>" style="width:100%;" alt="<?php echo $kandidat['foto']; ?>">
 								<div class="mask">
 									<!--<h2>Hover Style #1</h2>-->
 									
@@ -230,10 +237,8 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 							<p><?php echo $kandidat['nama']; ?></p>
 						</div>
 					</div>
-					<?php } ?>
-				
-				
-				
+					<?php $i++;} ?>
+				</div>
 				
 				
 			</div>
@@ -250,7 +255,7 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 	<script>
 		$(function(){
 			
-			//$('.kandidat-holder').eq(0).css('opacity','1');
+			$('.kandidat-holder').eq(0).css('opacity','1');
 			var i =0;
 			var $holders = $('.kandidat-holder');
 			$('body').keypress(function(e){

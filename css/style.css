@@ -13,10 +13,9 @@
 }
 .view {
   /*  width: 300px;
-  
+   height: 200px;
    margin: 10px;
    float: left; */
-    height: 229.23px;
    border: 10px solid #fff;
    overflow: hidden;
    position: relative;
@@ -28,7 +27,7 @@
    /* background: #fff url(../images/bgimg.jpg) no-repeat center center; */
 }
 .view img {
-   /* display: block; */
+   display: block;
    position: relative;
 }
 .view .mask,.view .content {
