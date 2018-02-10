@@ -4,6 +4,7 @@
 		header('location:login.php');
 	
 	require_once('../config/connection.php');
+	$settings = include('../config/settings.php');
 	$query = "SELECT no_kandidat,nama,ifnull(perolehan_suara,0) perolehan_suara FROM kandidat A 
 	LEFT JOIN (SELECT kandidat,count(1) perolehan_suara FROM suara_pemilih GROUP BY kandidat) B ON A.no_kandidat = B.kandidat 
     GROUP BY no_kandidat,nama order by no_kandidat asc";
@@ -73,7 +74,8 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 		</nav>
 		<div class="text-center fix-header">
 		
-			<h2 style="font-size:22px;line-height:30px">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN<br>TAHUN 2015 M/ 1437 H</h2>
+			<h2 style="font-size:22px;line-height:30px">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN
+			<br><?php echo $settings['tahun_pemilihan'] ?></h2>
 		</div>
 	</div>
 	
@@ -152,7 +154,8 @@ GROUP BY no_kandidat,nama order by B.perolehan_suara desc,no_kandidat asc";
 		<div id="final-result" style="margin-top:30px;">
 			<div class="text-center fix-header" style="margin-bottom:20px;">
 		
-				<h2 style="font-size:22px;line-height:30px;padding:15px 0px;">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN<br>TAHUN 2015 M/ 1437 H</h2>
+				<h2 style="font-size:22px;line-height:30px;padding:15px 0px;">HASIL AKHIR PEROLEHAN SUARA<br>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN
+				<br><?php echo $settings['tahun_pemilihan'] ?></h2>
 			</div>
 			<div class="row">
 				<?php

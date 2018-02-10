@@ -1,4 +1,5 @@
 <?php
+	$settings = include('config/settings.php');
 	require_once('config/connection.php');
 	$query = "SELECT * FROM kandidat";
 	$result = $mysqli->query($query);
@@ -42,7 +43,7 @@
 
 		<div class="text-center">
 			<h1>PEMILIHAN PRESIDEN ORGANISASI PELAJAR AL-ZAYTUN</h1>
-			<h1>TAHUN 2015 M/ 1437 H</h1>
+			<h1><?php echo $settings['tahun_pemilihan'] ?></h1>
 		</div>
 		<div class="row">
 		<?php
