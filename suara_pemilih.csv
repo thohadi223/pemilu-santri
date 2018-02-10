@@ -1,0 +1,17 @@
+
+<!-- PMA-SQL-ERROR -->
+    <div class="error"><h1>Error</h1>
+<p><strong>SQL query:</strong>
+<a href="./url.php?url=http%3A%2F%2Fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Fselect.html" target="mysql_doc"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help" /></a><a href="tbl_sql.php?sql_query=SELECT+%2A+FROM+suara_pemilih++WHERE+%28%60suara_pemilih%60.%60id%60+%3D+725%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+726%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1441%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1440%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1680%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1679%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+553%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+501%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+2255%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+2254%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+208%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+229%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1625%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1624%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1623%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1938%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+1937%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+748%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+769%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+749%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+751%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+2257%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+2078%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+353%29+OR+%28%60suara_pemilih%60.%60id%60+%3D+354%29+GROUP+BY+kode_pilih++HAVING+COUNT%28+1+%29+%3E+1+%29++ORDER+BY+kode_pilih&amp;show_query=1&amp;db=pemilu&amp;table=suara_pemilih&amp;token=48341ac9ec2edf1fcb2089d2c6d3c922"><span class="nowrap"><img src="themes/dot.gif" title="Edit" alt="Edit" class="icon ic_b_edit" /> Edit</span></a>    </p>
+<p>
+<code class="sql"><pre>
+SELECT * FROM suara_pemilih  WHERE (`suara_pemilih`.`id` = 725) OR (`suara_pemilih`.`id` = 726) OR (`suara_pemilih`.`id` = 1441) OR (`suara_pemilih`.`id` = 1440) OR (`suara_pemilih`.`id` = 1680) OR (`suara_pemilih`.`id` = 1679) OR (`suara_pemilih`.`id` = 553) OR (`suara_pemilih`.`id` = 501) OR (`suara_pemilih`.`id` = 2255) OR (`suara_pemilih`.`id` = 2254) OR (`suara_pemilih`.`id` = 208) OR (`suara_pemilih`.`id` = 229) OR (`suara_pemilih`.`id` = 1625) OR (`suara_pemilih`.`id` = 1624) OR (`suara_pemilih`.`id` = 1623) OR (`suara_pemilih`.`id` = 1938) OR (`suara_pemilih`.`id` = 1937) OR (`suara_pemilih`.`id` = 748) OR (`suara_pemilih`.`id` = 769) OR (`suara_pemilih`.`id` = 749) OR (`suara_pemilih`.`id` = 751) OR (`suara_pemilih`.`id` = 2257) OR (`suara_pemilih`.`id` = 2078) OR (`suara_pemilih`.`id` = 353) OR (`suara_pemilih`.`id` = 354) GROUP BY kode_pilih  HAVING COUNT( 1 ) &gt; 1 )  ORDER BY kode_pilih
+</pre></code>
+</p>
+<p>
+    <strong>MySQL said: </strong><a href="./url.php?url=http%3A%2F%2Fdev.mysql.com%2Fdoc%2Frefman%2F5.6%2Fen%2Ferror-messages-server.html" target="mysql_doc"><img src="themes/dot.gif" title="Documentation" alt="Documentation" class="icon ic_b_help" /></a>
+</p>
+<code>
+#1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')&nbsp;&nbsp;ORDER BY kode_pilih' at line 1
+</code><br />
+</div>

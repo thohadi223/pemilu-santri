@@ -1,0 +1,65 @@
+@font-face{
+	font-family: Ubuntu-Bold;
+    src: url(../../fonts/Ubuntu-Bold.ttf);
+}
+@font-face{
+	font-family: Ubuntu-Medium;
+    src: url(../../fonts/Ubuntu-Medium.ttf);
+}
+@font-face{
+	font-family: Ubuntu-Regular;
+    src: url(../../fonts/Ubuntu-Regular.ttf);
+}
+.left-menu{
+	max-width:300px;
+	position: absolute;
+	left:2px;
+	top:2px;
+	font-size:smaller;
+	z-index:102;
+}
+.nav>li>a {
+	padding:5px 10px;
+}
+.progress{
+	margin:20px;
+}
+h1{
+	font-family: Ubuntu-Bold, Arial, Sans-serif;
+}
+h2,h3{
+	font-family: Ubuntu-Medium, Arial, Sans-serif;
+}
+.ubuntu-regular{
+	font-family: Ubuntu-Regular, Arial, Sans-serif;
+}
+.counter{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding:20px;
+	font-size:80px;
+}
+
+#single-kandidat{
+	position:relative;
+	margin:0px auto;
+	list-style-type:none;
+}
+li.kandidat-holder{
+	position:absolute;
+	overflow:hidden;
+	height:500px;
+}
+.fix-header{
+	/* position:fixed;
+	left:0;
+	right: 0;
+	top: 5;
+	z-index:100; */
+	border-bottom:thin solid #eee;
+	background-color:#fff;
+	-webkit-box-shadow: 2px 5px 5px 0px rgba(230,230,230,1);
+	-moz-box-shadow: 2px 5px 5px 0px rgba(230,230,230,1);
+	box-shadow: 2px 5px 5px 0px rgba(230,230,230,1);
+}
